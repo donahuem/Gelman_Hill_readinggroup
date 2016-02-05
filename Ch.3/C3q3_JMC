@@ -1,0 +1,31 @@
+### Gelman & Hill 2007 Chapter 3, question 3 ###
+
+rm(list=ls()) #remove previous variable assignments
+
+### Question 3 part a
+# Generate two vectors of random numbers with a normal distribution
+var1 <- rnorm(1000,0,1)
+var2 <- rnorm(1000,0,1)
+
+# Run a regression & display summary statistics
+fit1 <- lm(var1~var2)
+summary(fit1)
+
+# The slope coeficent is statistically significant if it is more than 2SE away from zero (it's not significant)
+se.coef <- summary(fit1)$coefficients[2,2]
+coef(fit1)[2]+2*se.coef
+coef(fit1)[2]-2*se.coef
+
+### Question 3 part b
+
+z.scores <- rep (NA, 100)
+for (k in 1:100) {
+  var1 <- rnorm (1000,0,1)
+  var2 <- rnorm (1000,0,1)
+  fit <- lm (var2 ~ var1)
+  z.scores[k] <- coef(fit)[2]/summary(fit)$coefficients[2,2]
+}
+
+# Find out how many z-scores are significant (i.e., if the absolute value of the z-score > 2)
+freqTable <- table(z.scores)
+length(freqTable[abs(freqTable)>2])

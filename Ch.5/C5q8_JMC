@@ -1,0 +1,40 @@
+########## Chapter 5 Question 8 ###############
+## I couldn't find the rodent dataset, so I Used the roach dataset instead
+## 8a.
+
+roach <- read.csv("C:/Users/Jamie/IDriveSync/MultilevelModels_ReadingGroup/ARM_Data/roaches/roachdata.csv", head=T)
+roach$s.roach1 <- scale(roach$roach1)
+roach$s.exposure2 <- scale(roach$exposure2)
+
+# check that we get mean of 0 and sd of 1
+colMeans(roach[c("s.roach1", "s.exposure2")])  # faster version of apply(scaled.dat, 2, mean)
+apply(roach[c("s.roach1", "s.exposure2")], 2, sd)
+
+fit.1 <- glm (roach$treatment ~ roach$s.roach1, family=binomial(link="logit"))
+fit.1
+plot(fit.1)
+
+# Intercept of 0.41 tells us that a difference in 1 roach exposure 
+# category increases the probability of treatment by 41%
+
+## 8b.
+fit.2 <- glm(roach$treatment ~ roach$s.roach1 + roach$s.exposure2, family=binomial(link="logit"))
+fit.2
+
+# Adding exposure reduced the residual deviance by <1
+
+fit.3 <- glm(roach$treatment ~ roach$s.roach1 + roach$s.exposure2 + roach$s.roach1:roach$s.exposure2,
+             family=binomial(link="logit"))
+fit.3
+
+# Adding an interaction between exposure and number of roaches reduced the residual deviance slightly
+
+fit.4 <- glm(roach$treatment ~ roach$s.roach1 + roach$s.exposure2 + roach$senior,
+             family=binomial(link="logit"))
+fit.4
+
+# Adding the senior category improves the residual deviance further. This model tells us that 
+# at a mean level of roaches, each unit inrease in roaches increases the probability of 
+# treatment by 1% (0.06538/4=0.013845); at the mean level of exposure, the probability
+# of treatment is increased by 2% (coef = 0.08351/4 = 0.0208775); seniors are 9% more likely to get 
+# roach treatment over individuals that are not senior.

@@ -1,0 +1,23 @@
+##Chapter 5, Exercise 7
+##Katie Lubarsky
+
+##Load arm package
+library(arm)
+
+##create data fitting the following specifications (from exercise): single predictor x takes on values 1-20, binary data y.
+x<-1:20
+y<-c(rep(0,times=10), rep(1, times=10))
+
+data<-data.frame(x,y)
+
+attach(data)
+
+##fit logistic regression to data
+fit<-glm(y~x, family=binomial(link="logit"))
+display(fit)
+
+##plot data and fitted curve 
+plot(x,y)
+curve(invlogit(coef(fit)[1]+coef(fit)[2]*x), add=TRUE)
+
+###The model does not fit the data in this case because the predictor is completely aligned with the data, so that y=1 for all cases above a threshold (in this case x=10) and y=0 for all values below the threshold. Therefore, beta is best estimated by positive infinity.

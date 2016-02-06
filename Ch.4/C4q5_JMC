@@ -1,0 +1,29 @@
+5a.
+-Simple difference, D[i] - R[i]:
+
+A positive outcome would reflect districts where democrats raised more money whereas
+a negative outcome would reflect a district where democrats raised more money.
+
+This is easily interpretable, however, it does not provide any information regarding the total amount of money raised by both parties or direct comparisons between increases in earnings of both groups.
+
+-Ratio, D[i]/R[i]
+
+Outcomes > 1 would reflect districts where democrats raised more money than republicans;
+outcomes < 1 would reflect districts where democrats raised less money than republicans.
+
+Slightly less easily interpretable as the above transformation; same disadvantages.
+
+-Logarithmic scale difference, log D[i] - log R[i]
+
+The outcome would reflect the approximate proportional difference between money raised by democrats and republicans. 
+
+This transformation gives you more information about the fundraising relationship between the two parties but still disregards the total amount of money raised.
+
+- Relative proportion, D[i]/(D[i] + R[i])
+
+The outcome would reflect the democratic share of the total money raised by both parties.
+1-relative proportion would provide the same answer for the republican share.
+
+This transformation is useful for comparing the fundraising shares relative to the total money raised by both parties. This metric gives you the most information of the four described.
+
+5b. An idiosyncratic transformation could be used based on a discrete scale tailored to this specific question. For example, 1=0-$10,000 raised, 2=$10,000-$15,000 etc.

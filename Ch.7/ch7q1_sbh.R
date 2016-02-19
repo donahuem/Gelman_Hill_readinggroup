@@ -33,5 +33,5 @@ hist (n.balls, main="Simulated no of shots until 2 fails (p=.6)")
 mean(n.balls)
 #8.865
 sd(n.balls)
-#7.65
+#7.65 
 plot(n.balls, n.succ)

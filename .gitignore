@@ -11,6 +11,7 @@
 # RStudio files
 .Rproj.user/
 Gelman_Hill_readinggroup1.Rproj
+*.Rproj
 
 # produced vignettes
 vignettes/*.html

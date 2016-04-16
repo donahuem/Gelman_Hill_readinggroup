@@ -21,4 +21,6 @@ vignettes/*.pdf
 .httr-oauth
 .Rproj.user
 
+#OS junk file
+*.DS_Store
 
